@@ -606,6 +606,12 @@ def update_nrpe_config():
         check_cmd=common_utils.contrail_status_cmd(MODULE, plugins_dir)
     )
 
+    nrpe_compat.add_check(
+        shortname='contrail_introspect',
+        description='Check contrail introspect for contrail-agent',
+        check_cmd="check_contrail_introspect.py 'http://{}:8085/Snh_SandeshUVECacheReq?x=NodeStatus'".format(get_vhost_ip())
+    )
+
     nrpe_compat.write()
 
 
