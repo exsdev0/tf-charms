@@ -496,8 +496,13 @@ def update_nrpe_config():
         check_cmd=common_utils.contrail_status_cmd(MODULE, plugins_dir)
     )
 
-    nrpe_compat.write()
+    nrpe_compat.add_check(
+        shortname='contrail_controller_control_introspect_status',
+        description='Check contrail-controller-control node introspect status',
+        check_cmd='check_contrail_introspect.py "http://localhost:8083/Snh_SandeshUVECacheReq?x=NodeStatus"'
+    )
 
+    nrpe_compat.write()
 
 def stop_controller():
     docker_utils.compose_down(CONFIG_API_CONFIGS_PATH + "/docker-compose.yaml")
