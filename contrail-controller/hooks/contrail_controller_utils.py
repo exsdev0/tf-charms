@@ -502,6 +502,12 @@ def update_nrpe_config():
         check_cmd='check_contrail_introspect.py "http://localhost:8083/Snh_SandeshUVECacheReq?x=NodeStatus"'
     )
 
+    nrpe_compat.add_check(
+        shortname='contrail_controller_config_api_introspect_status',
+        description='Check contrail-controller-config api status',
+        check_cmd='check_contrail_introspect.py "http://localhost:8084/Snh_SandeshUVECacheReq?x=NodeStatus"'
+    )
+
     nrpe_compat.write()
 
 def stop_controller():
